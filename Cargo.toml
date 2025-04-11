@@ -1,0 +1,11 @@
+[package]
+name = "llm-prompt-generator"
+version = "0.1.0"
+edition = "2024"
+description = "A CLI tool to generate LLM prompts by expanding file references in templates"
+authors = ["Thomas Martin <thomas@oopss.org>"]
+
+[dependencies]
+regex = "1.10.2"
+anyhow = "1.0.75"
+clap = { version = "4.4.7", features = ["derive"] }
