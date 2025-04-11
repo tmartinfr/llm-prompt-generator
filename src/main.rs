@@ -76,8 +76,11 @@ fn expand_template(template: &str) -> Result<String> {
 
         // We've already checked that all files are readable, but let's handle errors just in case
         let file_content = match fs::read_to_string(filename) {
-            Ok(content) => format!("```\n{}\n```", content),
-            Err(err) => format!("[Error reading file '{}': {}]", filename, err),
+            Ok(content) => {
+                // Add a second-level markdown heading with the file path before the code block
+                format!("## {}\n\n```\n{}\n```", filename, content)
+            }
+            Err(err) => format!("## {}\n\n[Error reading file: {}]", filename, err),
         };
 
         result = result.replace(placeholder, &file_content);
